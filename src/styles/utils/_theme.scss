@@ -1,0 +1,27 @@
+$bg-color-0: pink;
+$text-color-0: red;
+
+$bg-color-1: blue;
+$text-color-1: aqua;
+
+@mixin template($bg, $color) {
+  body {
+    transition: 2s;
+    background-color: $bg !important;
+    color: $color !important;
+  }
+}
+
+@mixin themes {
+  &--0 {
+    @include template($bg-color-0, $text-color-0);
+  }
+  
+  &--1 {
+    @include template($bg-color-1, $text-color-1);
+  }
+}
+
+.mode {
+  @include themes;
+}

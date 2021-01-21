@@ -1,26 +1,29 @@
 import React from 'react';
 import './App.scss';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+interface ISettings {
+  mode: 0 | 1;
+}
+
+const App: React.FunctionComponent = () => {
+  const [settings, setSettings] = React.useState<ISettings>({
+    mode: 0
+  });
+
+  const changeTheme = (newMode: (0 | 1) = settings.mode): void => {
+    setSettings({
+      mode: newMode === 0 ? 1 : 0
+    });
   }
+
+  return (
+    <div className="App">
+      <div className={`mode mode--${settings.mode}`}>
+        <button onClick={() => changeTheme()}>{settings.mode}</button>
+        <span>Hi, mode {settings.mode}</span>
+      </div>
+    </div>
+  );
 }
 
 export default App;
